@@ -1,0 +1,773 @@
+<title>三連休、空けといて</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@400;500&display=swap">
+
+<style>
+/* ============ tokens ============ */
+:root{
+  color-scheme: light;
+  --ground:#EBEEF2;
+  --surface:#F9FAFC;
+  --surface-2:#F1F4F8;
+  --ink:#151C25;
+  --ink-2:#57626F;
+  --ink-3:#8A94A1;
+  --line:#D2D9E1;
+  --line-2:#BCC5D0;
+  --ai:#2B4372;
+  --ai-soft:#E2E9F5;
+  --tou:#B57621;
+  --tou-soft:#F4E9D7;
+  --cta-bg:#22375E;
+  --cta-fg:#FFF2DC;
+  --cta-glow:rgba(181,118,33,.38);
+  --glow:rgba(181,118,33,.10);
+  --shadow:0 1px 2px rgba(21,28,37,.07), 0 14px 34px -16px rgba(21,28,37,.38);
+  --shadow-s:0 1px 2px rgba(21,28,37,.06), 0 6px 16px -10px rgba(21,28,37,.3);
+
+  --display:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
+  --util:"Jost","Hiragino Sans",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --ground:#0F141B;
+    --surface:#171E27;
+    --surface-2:#1D2531;
+    --ink:#E9EDF2;
+    --ink-2:#9CA7B4;
+    --ink-3:#707B89;
+    --line:#28313D;
+    --line-2:#3B4653;
+    --ai:#94B0E0;
+    --ai-soft:#1C2635;
+    --tou:#E7B160;
+    --tou-soft:#2B2317;
+    --cta-bg:#E7B160;
+    --cta-fg:#131A22;
+    --cta-glow:rgba(231,177,96,.30);
+    --glow:rgba(231,177,96,.09);
+    --shadow:0 1px 2px rgba(0,0,0,.45), 0 16px 38px -16px rgba(0,0,0,.8);
+    --shadow-s:0 1px 2px rgba(0,0,0,.4), 0 8px 18px -10px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --ground:#0F141B;
+  --surface:#171E27;
+  --surface-2:#1D2531;
+  --ink:#E9EDF2;
+  --ink-2:#9CA7B4;
+  --ink-3:#707B89;
+  --line:#28313D;
+  --line-2:#3B4653;
+  --ai:#94B0E0;
+  --ai-soft:#1C2635;
+  --tou:#E7B160;
+  --tou-soft:#2B2317;
+  --cta-bg:#E7B160;
+  --cta-fg:#131A22;
+  --cta-glow:rgba(231,177,96,.30);
+  --glow:rgba(231,177,96,.09);
+  --shadow:0 1px 2px rgba(0,0,0,.45), 0 16px 38px -16px rgba(0,0,0,.8);
+  --shadow-s:0 1px 2px rgba(0,0,0,.4), 0 8px 18px -10px rgba(0,0,0,.7);
+}
+
+/* ============ base ============ */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(115% 70% at 50% -10%, var(--glow), transparent 62%),
+    var(--ground);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:15px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%;
+}
+button{font:inherit;color:inherit;background:none;border:0;margin:0;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--tou);outline-offset:3px;border-radius:6px}
+
+.app{
+  max-width:430px;
+  margin:0 auto;
+  padding:26px 20px 40px;
+}
+
+/* ============ screens ============ */
+.screen{display:none}
+.screen.on{display:block;animation:rise .42s cubic-bezier(.2,.7,.25,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ============ eyebrow / stepper ============ */
+.eyebrow{
+  font-family:var(--util);
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  margin:0 0 18px;
+  display:flex;align-items:center;gap:10px;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+
+.steps{display:flex;align-items:center;gap:8px;margin:0 0 22px;font-size:12px;color:var(--ink-3)}
+.steps span{display:inline-flex;align-items:center;gap:5px;letter-spacing:.04em}
+.steps .bar{flex:0 0 14px;height:1px;background:var(--line);gap:0}
+.steps .done{color:var(--tou)}
+.steps .now{color:var(--ink);font-weight:700}
+.steps svg{width:13px;height:13px;flex:none}
+
+/* ============ hero date ============ */
+.hero{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:0 14px;
+  align-items:start;
+  padding-bottom:22px;
+  border-bottom:1px solid var(--line);
+}
+.pillar{
+  writing-mode:vertical-rl;
+  font-family:var(--display);
+  font-size:13px;
+  letter-spacing:.42em;
+  color:var(--tou);
+  padding-top:6px;
+  margin-inline-end:2px;
+}
+.dateline{
+  font-family:var(--display);
+  font-weight:700;
+  line-height:.92;
+  display:flex;
+  align-items:baseline;
+  flex-wrap:wrap;
+  gap:0 2px;
+  font-variant-numeric:tabular-nums;
+}
+.dateline .n{font-size:clamp(46px,15vw,60px);letter-spacing:-.02em}
+.dateline .s{font-size:clamp(26px,8vw,34px);color:var(--ink-3);padding:0 2px}
+.dateline .to{font-size:clamp(20px,6vw,26px);color:var(--tou);padding:0 8px}
+.dow{
+  display:flex;gap:6px;margin-top:14px;
+}
+.dow span{
+  font-family:var(--display);
+  font-size:13px;
+  width:30px;height:30px;
+  display:grid;place-items:center;
+  border:1px solid var(--line-2);
+  border-radius:50%;
+  color:var(--ink-2);
+}
+
+.lede{
+  margin:26px 0 0;
+  font-size:19px;
+  line-height:1.9;
+  letter-spacing:.01em;
+  text-wrap:balance;
+}
+.lede b{font-weight:700;box-shadow:inset 0 -.42em 0 var(--tou-soft)}
+
+/* ============ arena (the chase) ============ */
+.arena{
+  position:relative;
+  margin-top:24px;
+  min-height:max(340px, 40vh);
+}
+.taunt{
+  margin:0 0 16px;
+  min-height:26px;
+  text-align:center;
+  font-family:var(--display);
+  font-size:15px;
+  letter-spacing:.06em;
+  color:var(--ink-2);
+  transition:color .2s;
+}
+.taunt.hot{color:var(--tou)}
+.yeswrap{display:flex;justify-content:center}
+.btn-yes{
+  width:210px;
+  padding:17px 20px;
+  border-radius:999px;
+  background:var(--cta-bg);
+  color:var(--cta-fg);
+  font-size:17px;
+  font-weight:700;
+  letter-spacing:.12em;
+  box-shadow:var(--shadow), 0 0 0 0 var(--cta-glow);
+  transform:scale(var(--as,1));
+  transform-origin:center top;
+  transition:transform .35s cubic-bezier(.2,.9,.3,1.3), box-shadow .35s;
+}
+.btn-yes:active{filter:brightness(1.06)}
+.btn-yes.pulse{box-shadow:var(--shadow), 0 0 0 12px transparent}
+.btn-no{
+  position:absolute;
+  left:0;top:0;
+  padding:13px 26px;
+  border-radius:999px;
+  border:1px solid var(--line-2);
+  background:var(--surface);
+  color:var(--ink-2);
+  font-size:15px;
+  letter-spacing:.08em;
+  box-shadow:var(--shadow-s);
+  transform:scale(var(--rs,1));
+  transition:left .26s cubic-bezier(.3,1.4,.5,1), top .26s cubic-bezier(.3,1.4,.5,1), transform .26s ease, opacity .3s;
+  white-space:nowrap;
+}
+.btn-no.gone{transform:scale(.2) rotate(-24deg);opacity:0;pointer-events:none}
+.footnote{
+  position:absolute;left:0;right:0;bottom:0;
+  text-align:center;font-size:11.5px;color:var(--ink-3);
+  font-family:var(--util);letter-spacing:.06em;
+}
+
+/* ============ headings on later screens ============ */
+.q{
+  font-family:var(--display);
+  font-size:24px;
+  font-weight:700;
+  line-height:1.5;
+  margin:0 0 6px;
+  letter-spacing:.02em;
+  text-wrap:balance;
+}
+.qsub{margin:0 0 20px;font-size:13px;color:var(--ink-2)}
+
+/* ============ mood grid ============ */
+.moods{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mood{
+  display:flex;align-items:center;gap:10px;
+  min-height:62px;
+  padding:12px 14px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--surface);
+  text-align:left;
+  transition:border-color .18s, background .18s, transform .12s;
+}
+.mood svg{width:22px;height:22px;flex:none;color:var(--ink-3);transition:color .18s}
+.mood .mt{font-size:15px;letter-spacing:.04em;font-weight:500}
+.mood:active{transform:scale(.98)}
+.mood[aria-pressed="true"]{
+  border-color:var(--ai);
+  background:var(--ai-soft);
+  box-shadow:inset 0 0 0 1px var(--ai);
+}
+.mood[aria-pressed="true"] svg{color:var(--ai)}
+.mood[aria-pressed="true"] .mt{font-weight:700}
+
+.err{
+  margin:14px 0 0;font-size:13px;color:var(--tou);
+  display:none;align-items:center;gap:6px;
+}
+.err.on{display:flex;animation:shake .34s}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+.next{
+  margin-top:22px;
+  width:100%;
+  padding:16px;
+  border-radius:999px;
+  background:var(--cta-bg);
+  color:var(--cta-fg);
+  font-size:16px;font-weight:700;letter-spacing:.12em;
+  box-shadow:var(--shadow);
+}
+.next:active{filter:brightness(1.06)}
+
+/* ============ distance ============ */
+.dists{display:flex;flex-direction:column;gap:10px}
+.dist{
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:4px 12px;
+  min-height:66px;
+  padding:13px 16px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--surface);
+  text-align:left;
+  transition:border-color .18s, background .18s, transform .12s;
+}
+.dist:active{transform:scale(.99)}
+.dist .dt{font-size:16px;font-weight:500;letter-spacing:.04em}
+.dist .dd{grid-column:1;font-size:12.5px;color:var(--ink-2);line-height:1.5}
+.meter{grid-row:1 / span 2;display:flex;gap:5px;align-items:center}
+.meter i{width:6px;height:6px;border-radius:50%;background:var(--line-2);display:block}
+.meter i.f{background:var(--tou)}
+.dist.sel{border-color:var(--ai);background:var(--ai-soft);box-shadow:inset 0 0 0 1px var(--ai)}
+
+/* ============ result ============ */
+.ticket{
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--surface);
+  box-shadow:var(--shadow-s);
+  overflow:hidden;
+}
+.ticket-top{
+  padding:18px 18px 16px;
+  background:var(--surface-2);
+  border-bottom:1px dashed var(--line-2);
+}
+.tlabel{
+  font-family:var(--util);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-3);margin:0 0 6px;
+}
+.tdate{
+  font-family:var(--display);font-weight:700;font-size:27px;line-height:1.25;
+  font-variant-numeric:tabular-nums;letter-spacing:.01em;
+}
+.tdate em{font-style:normal;color:var(--tou);padding:0 4px}
+.rows{display:flex;flex-direction:column}
+.row{
+  display:grid;grid-template-columns:74px 1fr;gap:12px;
+  padding:14px 18px;
+  border-bottom:1px solid var(--line);
+  align-items:baseline;
+}
+.row:last-child{border-bottom:0}
+.row dt{
+  font-size:11.5px;letter-spacing:.14em;color:var(--ink-3);
+  font-family:var(--util);text-transform:uppercase;margin:0;
+}
+.row dd{margin:0;font-size:15.5px;letter-spacing:.03em;line-height:1.6}
+dl{margin:0}
+
+.actions{display:flex;flex-direction:column;gap:10px;margin-top:22px}
+.btn-line{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  padding:16px;border-radius:999px;
+  background:var(--cta-bg);color:var(--cta-fg);
+  font-size:16px;font-weight:700;letter-spacing:.08em;
+  text-decoration:none;box-shadow:var(--shadow);
+}
+.btn-line svg{width:19px;height:19px}
+.btn-copy{
+  padding:14px;border-radius:999px;
+  border:1px solid var(--line-2);background:var(--surface);
+  color:var(--ink-2);font-size:14.5px;letter-spacing:.06em;
+}
+.copied{
+  margin:12px 0 0;text-align:center;font-size:13px;color:var(--tou);
+  min-height:20px;
+}
+.manual{display:none;margin-top:12px}
+.manual.on{display:block}
+.manual textarea{
+  width:100%;min-height:92px;padding:12px;
+  border:1px solid var(--line-2);border-radius:12px;
+  background:var(--surface);color:var(--ink);
+  font-family:var(--body);font-size:14px;line-height:1.7;resize:none;
+}
+.tail{
+  margin:26px 0 0;text-align:center;font-size:12px;color:var(--ink-3);
+  line-height:1.8;
+}
+.back{
+  display:block;margin:16px auto 0;font-size:12.5px;color:var(--ink-3);
+  text-decoration:underline;text-underline-offset:3px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+}
+</style>
+
+<main class="app">
+
+  <!-- ============ 1. お誘い ============ -->
+  <section class="screen on" id="s1" tabindex="-1">
+    <p class="eyebrow">迦一 より</p>
+
+    <div class="hero">
+      <div class="pillar">三連休</div>
+      <div>
+        <div class="dateline">
+          <span class="n">11</span><span class="s">/</span><span class="n">21</span>
+          <span class="to">→</span><span class="n">23</span>
+        </div>
+        <div class="dow"><span>土</span><span>日</span><span>月</span></div>
+      </div>
+    </div>
+
+    <p class="lede">この三日間、<b>旅行</b>行こう。</p>
+
+    <div class="arena" id="arena">
+      <p class="taunt" id="taunt">空いてる？</p>
+      <div class="yeswrap">
+        <button class="btn-yes" id="yes" type="button">空けとく</button>
+      </div>
+      <button class="btn-no" id="no" type="button">やめとく</button>
+      <p class="footnote" id="foot">1分で終わります</p>
+    </div>
+  </section>
+
+  <!-- ============ 2. 気分 ============ -->
+  <section class="screen" id="s2" tabindex="-1">
+    <nav class="steps" aria-label="進捗">
+      <span class="done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>日程</span>
+      <span class="bar"></span><span class="now">気分</span>
+      <span class="bar"></span><span>距離</span>
+    </nav>
+
+    <h1 class="q">どんな三日間がいい？</h1>
+    <p class="qsub">ピンとくるもの、いくつでも。</p>
+
+    <div class="moods" id="moods">
+      <button class="mood" type="button" aria-pressed="false" data-v="山">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 19h20"/><path d="M3 19l6.5-11 4 6.2 2.6-4L21 19"/><path d="M8.2 10.4h2.6"/></svg>
+        <span class="mt">山</span>
+      </button>
+      <button class="mood" type="button" aria-pressed="false" data-v="海">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M2 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M2 20c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg>
+        <span class="mt">海</span>
+      </button>
+      <button class="mood" type="button" aria-pressed="false" data-v="景色">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="17.5" cy="6.5" r="2.6"/><path d="M2 20h20"/><path d="M2 16l5-5 3.5 3.4L14 11l8 6.4"/></svg>
+        <span class="mt">景色</span>
+      </button>
+      <button class="mood" type="button" aria-pressed="false" data-v="釣り">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3.5 15 12"/><path d="M15 12v4.2"/><path d="M15 16.2a1.7 1.7 0 0 1-3 .5"/><path d="M5.5 20c1.6-1.3 3.2-1.3 4.8 0 1.6-1.3 3.2-1.3 4.8 0"/></svg>
+        <span class="mt">釣り</span>
+      </button>
+      <button class="mood" type="button" aria-pressed="false" data-v="温泉">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c0 1.8-1.2 2.2-1.2 3.6S8 8.4 8 10"/><path d="M12 2.4c0 1.8-1.2 2.2-1.2 3.6S12 7.8 12 9.4"/><path d="M16 3c0 1.8-1.2 2.2-1.2 3.6S16 8.4 16 10"/><path d="M3.5 14h17a7 7 0 0 1-7 7h-3a7 7 0 0 1-7-7z"/></svg>
+        <span class="mt">温泉</span>
+      </button>
+      <button class="mood" type="button" aria-pressed="false" data-v="街ぶら">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 21h20"/><path d="M3.5 21V9l5-3v15"/><path d="M8.5 21V11l6-2.6V21"/><path d="M14.5 21v-8.6L20.5 11v10"/><path d="M5.8 11.5h.01M5.8 15h.01M11 13h.01M11 16.5h.01M17.3 15h.01"/></svg>
+        <span class="mt">街ぶら</span>
+      </button>
+    </div>
+
+    <p class="err" id="moodErr" role="alert">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.4h.01"/></svg>
+      ひとつでいいから選んで
+    </p>
+
+    <button class="next" id="toDist" type="button">次へ</button>
+  </section>
+
+  <!-- ============ 3. 距離感 ============ -->
+  <section class="screen" id="s3" tabindex="-1">
+    <nav class="steps" aria-label="進捗">
+      <span class="done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>日程</span>
+      <span class="bar"></span>
+      <span class="done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>気分</span>
+      <span class="bar"></span><span class="now">距離</span>
+    </nav>
+
+    <h1 class="q">どのくらい、遠く行きたい？</h1>
+    <p class="qsub">感覚でいい。</p>
+
+    <div class="dists" id="dists">
+      <button class="dist" type="button" data-v="めちゃ近" data-lv="1">
+        <span class="dt">めちゃ近</span>
+        <span class="meter" aria-hidden="true"><i class="f"></i><i></i><i></i><i></i></span>
+        <span class="dd">すぐ着いて、ゆっくりしたい</span>
+      </button>
+      <button class="dist" type="button" data-v="ちょい遠い" data-lv="2">
+        <span class="dt">ちょい遠い</span>
+        <span class="meter" aria-hidden="true"><i class="f"></i><i class="f"></i><i></i><i></i></span>
+        <span class="dd">移動もちょっと楽しみたい</span>
+      </button>
+      <button class="dist" type="button" data-v="遠目" data-lv="3">
+        <span class="dt">遠目</span>
+        <span class="meter" aria-hidden="true"><i class="f"></i><i class="f"></i><i class="f"></i><i></i></span>
+        <span class="dd">せっかくだし、がっつり行く</span>
+      </button>
+      <button class="dist" type="button" data-v="沖縄" data-lv="4">
+        <span class="dt">沖縄</span>
+        <span class="meter" aria-hidden="true"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span>
+        <span class="dd">本気で言ってるなら、考える</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ 4. 確定 ============ -->
+  <section class="screen" id="s4" tabindex="-1">
+    <nav class="steps" aria-label="進捗">
+      <span class="done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>日程</span>
+      <span class="bar"></span>
+      <span class="done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>気分</span>
+      <span class="bar"></span>
+      <span class="done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>距離</span>
+    </nav>
+
+    <h1 class="q">決まり。あとは送るだけ。</h1>
+    <p class="qsub">この内容をそのままLINEで送ってね。</p>
+
+    <div class="ticket">
+      <div class="ticket-top">
+        <p class="tlabel">Blocked</p>
+        <div class="tdate">11/21<em>→</em>23<br>空けとく</div>
+      </div>
+      <dl class="rows">
+        <div class="row"><dt>気分</dt><dd id="sumMood">—</dd></div>
+        <div class="row"><dt>距離感</dt><dd id="sumDist">—</dd></div>
+      </dl>
+    </div>
+
+    <div class="actions">
+      <a class="btn-line" id="lineBtn" href="#" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6c5.5 0 10 3.6 10 8 0 1.8-.7 3.4-2 4.8-1.9 2.2-6.2 4.9-7.2 5.3-.9.4-.8-.2-.8-.4l.1-.9c0-.3.1-.8-.1-1.1-.2-.3-.8-.5-1.3-.6-4.6-.6-8.7-3.8-8.7-7.1 0-4.4 4.5-8 10-8z"/></svg>
+        LINEで送る
+      </a>
+      <button class="btn-copy" id="copyBtn" type="button">コピーする</button>
+    </div>
+    <p class="copied" id="copied" role="status"></p>
+
+    <div class="manual" id="manual">
+      <textarea id="manualText" readonly aria-label="送信する本文"></textarea>
+      <p class="qsub" style="margin:8px 0 0">上を長押しして、コピーして送ってね。</p>
+    </div>
+
+    <p class="tail">LINEが開かないときは「コピーする」でもOK。</p>
+    <a class="back" href="#" id="back">気分・距離をやり直す</a>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- state ---------- */
+  var state = { moods: [], dist: null };
+
+  /* ---------- screen switching ---------- */
+  var screens = document.querySelectorAll('.screen');
+  function show(id){
+    for(var i=0;i<screens.length;i++){
+      screens[i].classList.toggle('on', screens[i].id === id);
+    }
+    window.scrollTo(0,0);
+    var el = document.getElementById(id);
+    if(el) el.focus({preventScroll:true});
+  }
+
+  /* ---------- 1. the chase ---------- */
+  var arena = document.getElementById('arena');
+  var yes   = document.getElementById('yes');
+  var no    = document.getElementById('no');
+  var taunt = document.getElementById('taunt');
+  var foot  = document.getElementById('foot');
+
+  var TAUNTS = [
+    '空いてる？',
+    'え、いま避けた？',
+    'そっちは押せないよ',
+    'まだやる？',
+    '意外としつこいね',
+    'だんだん小さくなってきた',
+    'そろそろ限界っぽい',
+    'あと少しで消えるよ',
+    '……次で最後'
+  ];
+  var FINAL = 'はい、決まり。';
+  var MAX_HITS = 9;
+  var PAD = 6;
+
+  var hits = 0, gone = false;
+
+  function place(x, y){
+    no.style.left = Math.round(x) + 'px';
+    no.style.top  = Math.round(y) + 'px';
+  }
+
+  function reset(){
+    if(hits > 0) return;
+    var a = arena.getBoundingClientRect();
+    var y = yes.getBoundingClientRect();
+    place(a.width/2 - no.offsetWidth/2, (y.bottom - a.top) + 22);
+  }
+
+  function flee(e){
+    if(e){ if(e.cancelable) e.preventDefault(); e.stopPropagation(); }
+    if(gone) return;
+
+    hits++;
+
+    var rs = Math.max(0.45, 1 - hits * 0.06875);
+    var as = Math.min(1.45, 1 + hits * 0.05625);
+    no.style.setProperty('--rs', rs.toFixed(3));
+    yes.style.setProperty('--as', as.toFixed(3));
+
+    taunt.textContent = TAUNTS[Math.min(hits, TAUNTS.length - 1)];
+    if(hits >= 5) taunt.classList.add('hot');
+
+    if(hits >= MAX_HITS){
+      gone = true;
+      no.classList.add('gone');
+      no.setAttribute('aria-hidden','true');
+      no.tabIndex = -1;
+      taunt.textContent = FINAL;
+      foot.textContent = 'あとは押すだけ';
+      window.setTimeout(function(){ no.style.display = 'none'; }, 340);
+      buzz(28);
+      return;
+    }
+
+    var a = arena.getBoundingClientRect();
+    var w = no.offsetWidth, h = no.offsetHeight;
+    var maxX = Math.max(0, a.width  - w - PAD*2);
+    var maxY = Math.max(0, a.height - h - PAD*2);
+
+    var yr = yes.getBoundingClientRect();
+    var box = {
+      l: yr.left  - a.left - 12, t: yr.top    - a.top - 12,
+      r: yr.right - a.left + 12, b: yr.bottom - a.top + 12
+    };
+
+    var x = PAD, y = PAD;
+    for(var i=0;i<40;i++){
+      x = PAD + Math.random() * maxX;
+      y = PAD + Math.random() * maxY;
+      var hit = (x < box.r && x + w > box.l && y < box.b && y + h > box.t);
+      if(!hit) break;
+    }
+    place(x, y);
+    buzz(12);
+  }
+
+  function buzz(ms){
+    try{ if(navigator.vibrate) navigator.vibrate(ms); }catch(err){}
+  }
+
+  ['pointerdown','pointerenter','mouseover','mousedown','focus'].forEach(function(t){
+    no.addEventListener(t, flee);
+  });
+  no.addEventListener('touchstart', flee, {passive:false});
+  no.addEventListener('click', function(e){ e.preventDefault(); flee(e); });
+
+  yes.addEventListener('click', function(){ buzz(18); show('s2'); });
+
+  window.addEventListener('resize', function(){
+    if(hits === 0){ reset(); return; }
+    if(gone) return;
+    var a = arena.getBoundingClientRect();
+    var x = Math.min(parseFloat(no.style.left) || 0, Math.max(0, a.width  - no.offsetWidth  - PAD));
+    var y = Math.min(parseFloat(no.style.top)  || 0, Math.max(0, a.height - no.offsetHeight - PAD));
+    place(x, y);
+  });
+
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(reset); }
+  window.addEventListener('load', reset);
+  reset();
+
+  /* ---------- 2. moods ---------- */
+  var moodBox = document.getElementById('moods');
+  var moodErr = document.getElementById('moodErr');
+
+  moodBox.addEventListener('click', function(e){
+    var b = e.target.closest('.mood');
+    if(!b) return;
+    var v = b.getAttribute('data-v');
+    var on = b.getAttribute('aria-pressed') === 'true';
+    b.setAttribute('aria-pressed', on ? 'false' : 'true');
+    if(on){
+      state.moods = state.moods.filter(function(m){ return m !== v; });
+    }else{
+      state.moods.push(v);
+    }
+    moodErr.classList.remove('on');
+  });
+
+  document.getElementById('toDist').addEventListener('click', function(){
+    if(state.moods.length === 0){
+      moodErr.classList.remove('on');
+      void moodErr.offsetWidth;
+      moodErr.classList.add('on');
+      return;
+    }
+    show('s3');
+  });
+
+  /* ---------- 3. distance ---------- */
+  var distBox = document.getElementById('dists');
+  distBox.addEventListener('click', function(e){
+    var b = e.target.closest('.dist');
+    if(!b) return;
+    var all = distBox.querySelectorAll('.dist');
+    for(var i=0;i<all.length;i++) all[i].classList.remove('sel');
+    b.classList.add('sel');
+    state.dist = b.getAttribute('data-v');
+    render();
+    window.setTimeout(function(){ show('s4'); }, 190);
+  });
+
+  /* ---------- 4. result ---------- */
+  var sumMood  = document.getElementById('sumMood');
+  var sumDist  = document.getElementById('sumDist');
+  var lineBtn  = document.getElementById('lineBtn');
+  var copyBtn  = document.getElementById('copyBtn');
+  var copied   = document.getElementById('copied');
+  var manual   = document.getElementById('manual');
+  var manualTx = document.getElementById('manualText');
+
+  function message(){
+    return '11/21〜23 空けとく\n'
+         + '気分：' + state.moods.join('・') + '\n'
+         + '距離感：' + (state.dist || '');
+  }
+
+  function render(){
+    sumMood.textContent = state.moods.join('・') || '—';
+    sumDist.textContent = state.dist || '—';
+    var txt = message();
+    lineBtn.href = 'https://line.me/R/msg/text/?' + encodeURIComponent(txt);
+    manualTx.value = txt;
+  }
+
+  copyBtn.addEventListener('click', function(){
+    var txt = message();
+    function ok(){
+      copied.textContent = 'コピーした。LINEに貼って送ってね。';
+      manual.classList.remove('on');
+    }
+    function fail(){
+      copied.textContent = 'コピーできなかった。下の文をそのまま使って。';
+      manual.classList.add('on');
+      try{ manualTx.focus(); manualTx.setSelectionRange(0, txt.length); }catch(err){}
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(ok, function(){ legacy(txt, ok, fail); });
+    }else{
+      legacy(txt, ok, fail);
+    }
+  });
+
+  function legacy(txt, ok, fail){
+    try{
+      manualTx.value = txt;
+      manual.classList.add('on');
+      manualTx.focus();
+      manualTx.setSelectionRange(0, txt.length);
+      var done = document.execCommand('copy');
+      if(done){ ok(); } else { fail(); }
+    }catch(err){ fail(); }
+  }
+
+  document.getElementById('back').addEventListener('click', function(e){
+    e.preventDefault();
+    copied.textContent = '';
+    manual.classList.remove('on');
+    show('s2');
+  });
+
+})();
+</script>
