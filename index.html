@@ -85,8 +85,8 @@ body{
     var(--ground);
   color:var(--ink);
   font-family:var(--body);
-  font-size:15px;
-  line-height:1.75;
+  font-size:16.5px;
+  line-height:1.8;
   -webkit-font-smoothing:antialiased;
   -webkit-text-size-adjust:100%;
 }
@@ -97,7 +97,7 @@ a{color:inherit}
 .app{
   max-width:430px;
   margin:0 auto;
-  padding:26px 20px 40px;
+  padding:30px 20px 44px;
 }
 
 /* ============ screens ============ */
@@ -108,7 +108,7 @@ a{color:inherit}
 /* ============ eyebrow / stepper ============ */
 .eyebrow{
   font-family:var(--util);
-  font-size:11px;
+  font-size:12px;
   letter-spacing:.18em;
   text-transform:uppercase;
   color:var(--ink-3);
@@ -117,12 +117,12 @@ a{color:inherit}
 }
 .eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
 
-.steps{display:flex;align-items:center;gap:8px;margin:0 0 22px;font-size:12px;color:var(--ink-3)}
+.steps{display:flex;align-items:center;gap:8px;margin:0 0 24px;font-size:13px;color:var(--ink-3)}
 .steps span{display:inline-flex;align-items:center;gap:5px;letter-spacing:.04em}
 .steps .bar{flex:0 0 14px;height:1px;background:var(--line);gap:0}
 .steps .done{color:var(--tou)}
 .steps .now{color:var(--ink);font-weight:700}
-.steps svg{width:13px;height:13px;flex:none}
+.steps svg{width:14px;height:14px;flex:none}
 
 /* ============ hero date ============ */
 .hero{
@@ -136,7 +136,7 @@ a{color:inherit}
 .pillar{
   writing-mode:vertical-rl;
   font-family:var(--display);
-  font-size:13px;
+  font-size:15px;
   letter-spacing:.42em;
   color:var(--tou);
   padding-top:6px;
@@ -152,16 +152,16 @@ a{color:inherit}
   gap:0 2px;
   font-variant-numeric:tabular-nums;
 }
-.dateline .n{font-size:clamp(46px,15vw,60px);letter-spacing:-.02em}
-.dateline .s{font-size:clamp(26px,8vw,34px);color:var(--ink-3);padding:0 2px}
-.dateline .to{font-size:clamp(20px,6vw,26px);color:var(--tou);padding:0 8px}
+.dateline .n{font-size:clamp(54px,17.5vw,72px);letter-spacing:-.02em}
+.dateline .s{font-size:clamp(30px,9.5vw,41px);color:var(--ink-3);padding:0 2px}
+.dateline .to{font-size:clamp(23px,7vw,31px);color:var(--tou);padding:0 8px}
 .dow{
   display:flex;gap:6px;margin-top:14px;
 }
 .dow span{
   font-family:var(--display);
-  font-size:13px;
-  width:30px;height:30px;
+  font-size:15px;
+  width:35px;height:35px;
   display:grid;place-items:center;
   border:1px solid var(--line-2);
   border-radius:50%;
@@ -170,8 +170,8 @@ a{color:inherit}
 
 .lede{
   margin:26px 0 0;
-  font-size:19px;
-  line-height:1.9;
+  font-size:22px;
+  line-height:1.85;
   letter-spacing:.01em;
   text-wrap:balance;
 }
@@ -181,14 +181,14 @@ a{color:inherit}
 .arena{
   position:relative;
   margin-top:24px;
-  min-height:max(340px, 40vh);
+  min-height:max(360px, 46vh);
 }
 .taunt{
-  margin:0 0 16px;
-  min-height:26px;
+  margin:0 0 18px;
+  min-height:30px;
   text-align:center;
   font-family:var(--display);
-  font-size:15px;
+  font-size:17px;
   letter-spacing:.06em;
   color:var(--ink-2);
   transition:color .2s;
@@ -196,12 +196,13 @@ a{color:inherit}
 .taunt.hot{color:var(--tou)}
 .yeswrap{display:flex;justify-content:center}
 .btn-yes{
-  width:210px;
-  padding:17px 20px;
+  width:66%;
+  max-width:244px;
+  padding:19px 20px;
   border-radius:999px;
   background:var(--cta-bg);
   color:var(--cta-fg);
-  font-size:17px;
+  font-size:19px;
   font-weight:700;
   letter-spacing:.12em;
   box-shadow:var(--shadow), 0 0 0 0 var(--cta-glow);
@@ -214,12 +215,12 @@ a{color:inherit}
 .btn-no{
   position:absolute;
   left:0;top:0;
-  padding:13px 26px;
+  padding:15px 28px;
   border-radius:999px;
   border:1px solid var(--line-2);
   background:var(--surface);
   color:var(--ink-2);
-  font-size:15px;
+  font-size:16px;
   letter-spacing:.08em;
   box-shadow:var(--shadow-s);
   transform:scale(var(--rs,1));
@@ -229,36 +230,36 @@ a{color:inherit}
 .btn-no.gone{transform:scale(.2) rotate(-24deg);opacity:0;pointer-events:none}
 .footnote{
   position:absolute;left:0;right:0;bottom:0;
-  text-align:center;font-size:11.5px;color:var(--ink-3);
+  text-align:center;font-size:13px;color:var(--ink-3);
   font-family:var(--util);letter-spacing:.06em;
 }
 
 /* ============ headings on later screens ============ */
 .q{
   font-family:var(--display);
-  font-size:24px;
+  font-size:27px;
   font-weight:700;
   line-height:1.5;
   margin:0 0 6px;
   letter-spacing:.02em;
   text-wrap:balance;
 }
-.qsub{margin:0 0 20px;font-size:13px;color:var(--ink-2)}
+.qsub{margin:0 0 22px;font-size:14.5px;color:var(--ink-2)}
 
 /* ============ mood grid ============ */
 .moods{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .mood{
   display:flex;align-items:center;gap:10px;
-  min-height:62px;
-  padding:12px 14px;
+  min-height:72px;
+  padding:14px 15px;
   border:1px solid var(--line);
   border-radius:14px;
   background:var(--surface);
   text-align:left;
   transition:border-color .18s, background .18s, transform .12s;
 }
-.mood svg{width:22px;height:22px;flex:none;color:var(--ink-3);transition:color .18s}
-.mood .mt{font-size:15px;letter-spacing:.04em;font-weight:500}
+.mood svg{width:25px;height:25px;flex:none;color:var(--ink-3);transition:color .18s}
+.mood .mt{font-size:17px;letter-spacing:.04em;font-weight:500}
 .mood:active{transform:scale(.98)}
 .mood[aria-pressed="true"]{
   border-color:var(--ai);
@@ -269,20 +270,20 @@ a{color:inherit}
 .mood[aria-pressed="true"] .mt{font-weight:700}
 
 .err{
-  margin:14px 0 0;font-size:13px;color:var(--tou);
+  margin:14px 0 0;font-size:14.5px;color:var(--tou);
   display:none;align-items:center;gap:6px;
 }
 .err.on{display:flex;animation:shake .34s}
 @keyframes shake{0%,100%{transform:none}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 
 .next{
-  margin-top:22px;
+  margin-top:24px;
   width:100%;
-  padding:16px;
+  padding:18px;
   border-radius:999px;
   background:var(--cta-bg);
   color:var(--cta-fg);
-  font-size:16px;font-weight:700;letter-spacing:.12em;
+  font-size:18px;font-weight:700;letter-spacing:.12em;
   box-shadow:var(--shadow);
 }
 .next:active{filter:brightness(1.06)}
@@ -294,8 +295,8 @@ a{color:inherit}
   grid-template-columns:1fr auto;
   align-items:center;
   gap:4px 12px;
-  min-height:66px;
-  padding:13px 16px;
+  min-height:78px;
+  padding:15px 17px;
   border:1px solid var(--line);
   border-radius:14px;
   background:var(--surface);
@@ -303,10 +304,10 @@ a{color:inherit}
   transition:border-color .18s, background .18s, transform .12s;
 }
 .dist:active{transform:scale(.99)}
-.dist .dt{font-size:16px;font-weight:500;letter-spacing:.04em}
-.dist .dd{grid-column:1;font-size:12.5px;color:var(--ink-2);line-height:1.5}
+.dist .dt{font-size:18px;font-weight:500;letter-spacing:.04em}
+.dist .dd{grid-column:1;font-size:14px;color:var(--ink-2);line-height:1.5}
 .meter{grid-row:1 / span 2;display:flex;gap:5px;align-items:center}
-.meter i{width:6px;height:6px;border-radius:50%;background:var(--line-2);display:block}
+.meter i{width:7px;height:7px;border-radius:50%;background:var(--line-2);display:block}
 .meter i.f{background:var(--tou)}
 .dist.sel{border-color:var(--ai);background:var(--ai-soft);box-shadow:inset 0 0 0 1px var(--ai)}
 
@@ -324,27 +325,27 @@ a{color:inherit}
   border-bottom:1px dashed var(--line-2);
 }
 .tlabel{
-  font-family:var(--util);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  font-family:var(--util);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--ink-3);margin:0 0 6px;
 }
 .tdate{
-  font-family:var(--display);font-weight:700;font-size:27px;line-height:1.25;
+  font-family:var(--display);font-weight:700;font-size:31px;line-height:1.25;
   font-variant-numeric:tabular-nums;letter-spacing:.01em;
 }
 .tdate em{font-style:normal;color:var(--tou);padding:0 4px}
 .rows{display:flex;flex-direction:column}
 .row{
-  display:grid;grid-template-columns:74px 1fr;gap:12px;
-  padding:14px 18px;
+  display:grid;grid-template-columns:80px 1fr;gap:12px;
+  padding:16px 18px;
   border-bottom:1px solid var(--line);
   align-items:baseline;
 }
 .row:last-child{border-bottom:0}
 .row dt{
-  font-size:11.5px;letter-spacing:.14em;color:var(--ink-3);
+  font-size:12.5px;letter-spacing:.14em;color:var(--ink-3);
   font-family:var(--util);text-transform:uppercase;margin:0;
 }
-.row dd{margin:0;font-size:15.5px;letter-spacing:.03em;line-height:1.6}
+.row dd{margin:0;font-size:17px;letter-spacing:.03em;line-height:1.6}
 dl{margin:0}
 
 .actions{display:flex;flex-direction:column;gap:10px;margin-top:22px}
@@ -352,17 +353,17 @@ dl{margin:0}
   display:flex;align-items:center;justify-content:center;gap:9px;
   padding:16px;border-radius:999px;
   background:var(--cta-bg);color:var(--cta-fg);
-  font-size:16px;font-weight:700;letter-spacing:.08em;
+  font-size:18px;font-weight:700;letter-spacing:.08em;
   text-decoration:none;box-shadow:var(--shadow);
 }
-.btn-line svg{width:19px;height:19px}
+.btn-line svg{width:21px;height:21px}
 .btn-copy{
-  padding:14px;border-radius:999px;
+  padding:16px;border-radius:999px;
   border:1px solid var(--line-2);background:var(--surface);
-  color:var(--ink-2);font-size:14.5px;letter-spacing:.06em;
+  color:var(--ink-2);font-size:16px;letter-spacing:.06em;
 }
 .copied{
-  margin:12px 0 0;text-align:center;font-size:13px;color:var(--tou);
+  margin:12px 0 0;text-align:center;font-size:14px;color:var(--tou);
   min-height:20px;
 }
 .manual{display:none;margin-top:12px}
@@ -374,11 +375,11 @@ dl{margin:0}
   font-family:var(--body);font-size:14px;line-height:1.7;resize:none;
 }
 .tail{
-  margin:26px 0 0;text-align:center;font-size:12px;color:var(--ink-3);
+  margin:26px 0 0;text-align:center;font-size:13.5px;color:var(--ink-3);
   line-height:1.8;
 }
 .back{
-  display:block;margin:16px auto 0;font-size:12.5px;color:var(--ink-3);
+  display:block;margin:18px auto 0;font-size:13.5px;color:var(--ink-3);
   text-decoration:underline;text-underline-offset:3px;
 }
 
@@ -404,7 +405,7 @@ dl{margin:0}
       </div>
     </div>
 
-    <p class="lede">この三日間、<b>旅行</b>行こう。</p>
+    <p class="lede">この三日間、<b>旅行</b>行こう。<br>予定、空けといて。</p>
 
     <div class="arena" id="arena">
       <p class="taunt" id="taunt">空いてる？</p>
